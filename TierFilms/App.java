@@ -26,8 +26,9 @@ public class App {
         System.out.println("Título: \u001b[107m\u001b[95m"+filmeListado.get("title")+"\u001b[m");
         System.out.println("Nota: "+filmeListado.get("imDbRating"));
         System.out.println(filmeListado.get("image"));
+        System.out.println();
         System.out.println("-------------------");
-    
+        
 
        }
     }
