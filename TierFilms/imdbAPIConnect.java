@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class imdbAPIConnect {
+  private String key = "";
+  public String getKey() {
+      return key;
+  }
     public HttpResponse<String> conectAPI(String urlAPI) throws IOException, InterruptedException {
      //Conexão com a API
      URI uri = URI.create(urlAPI); 
