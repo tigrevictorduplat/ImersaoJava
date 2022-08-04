@@ -36,7 +36,8 @@ public class imdbAPIConnect {
       System.out.println(filmeListado.get("rank")+"°");
       System.out.println("Título: \u001b[107m\u001b[95m"+filmeListado.get("title")+"\u001b[m");
       System.out.println("Nota: "+emojiStarRank.covertRanktoStars(emojiStarRank.rankRounder(filmeListado.get("imDbRating"))));
-      System.out.println(filmeListado.get("image"));
+      var imageOutput = (filmeListado.get("image") != null)? filmeListado.get("image") : "";
+      System.out.println(imageOutput);
       System.out.println("-------------------");
     }
     }
