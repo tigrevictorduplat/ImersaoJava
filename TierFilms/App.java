@@ -5,13 +5,15 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) throws IOException, InterruptedException {
     imdbAPIConnect conexaoAPI = new imdbAPIConnect();
-    conexaoAPI.listarTopFilmes(conexaoAPI.extractAPIBody(
+//Listando os Top 250 Melhores Filmes 
+    conexaoAPI.listarTopFilmes(
+        conexaoAPI.extractAPIBody(
            conexaoAPI.conectAPI(
                "https://imdb-api.com/en/API/Top250Movies/"+conexaoAPI.getKey())));
-
+//Listando os TOP100 Filmes Mais Populares
     conexaoAPI.listarTopFilmes(
         conexaoAPI.extractAPIBody(
             conexaoAPI.conectAPI(
-                "https://imdb-api.com/en/API/Top250TVs/"+conexaoAPI.getKey())));
+                "https://imdb-api.com/en/API/MostPopularMovies/"+conexaoAPI.getKey())));
 } 
 }

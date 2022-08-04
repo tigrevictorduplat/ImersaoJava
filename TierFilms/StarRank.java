@@ -25,12 +25,13 @@ public class StarRank {
                stars = "⭐⭐⭐⭐⭐"; 
             break;
             default:
+               stars = "🚧Waiting for IMDB Rating🚧";
                 break;
         }
         return stars;
     }
     public Integer rankRounder(String rank) {
-        var intRank = (int) Math.round(Double.parseDouble(rank));
+        var intRank = (rank != "")? ((int) Math.round(Double.parseDouble(rank))):0;
         return intRank;
     }
 }
