@@ -1,7 +1,9 @@
 package TierFilms;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -39,6 +41,22 @@ public class imdbAPIConnect {
       var imageOutput = (filmeListado.get("image") != null)? filmeListado.get("image") : "";
       System.out.println(imageOutput);
       System.out.println("-------------------");
+     }
     }
+
+    public void retornarUrlImagem(List<Map<String,String>> listaURL) throws Exception {
+     StarRank emojiStarRank = new StarRank();
+     StickerFormatter formatadora = new StickerFormatter();
+
+     for (Map<String,String> urlListada : listaURL) {
+        String notaFig = emojiStarRank.covertRanktoStars(emojiStarRank.rankRounder(urlListada.get("imDbRating")));
+        String tituloFig = (urlListada.get("title")+".png");
+        String urlImagem = urlListada.get("image");
+        System.out.println(tituloFig);
+        System.out.println(urlImagem);
+        InputStream inputStream = new URL(urlImagem).openStream();
+        formatadora.converterFig(inputStream, tituloFig,notaFig);
+    }
+
     }
 }
