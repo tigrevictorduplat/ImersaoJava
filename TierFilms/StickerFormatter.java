@@ -33,7 +33,13 @@ public class StickerFormatter {
         var posicaoHorizontalTexto = (int) Math.round(((imagemFormatada.getWidth())/2) - (larguraTexto/2));
         caneta.drawString(conteudoTexto, posicaoHorizontalTexto, alturaTexto);
         //Exportar tudo pra um único Arquivo
-        ImageIO.write(imagemFormatada, "png", new File("TierFilms/BancoImagem/"+tituloFig));
+        var target = ":";
+        var replacement = " -";
+        String novoTitulo =  tituloFig.replace(target, replacement);
+        novoTitulo += ".png";
+        ImageIO.write(imagemFormatada, "png", new File("TierFilms/BancoSaida/"+novoTitulo));
+        System.out.println(novoTitulo + " foi criado...");
+        
         
     }
 }

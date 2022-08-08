@@ -33,30 +33,32 @@ public class imdbAPIConnect {
 
      public void listarTopFilmes(List<Map<String,String>> listaFilmes) {  
      //Exibição dos Dados
-     StarRank emojiStarRank = new StarRank();
      for (Map<String,String> filmeListado : listaFilmes) {
       System.out.println(filmeListado.get("rank")+"°");
       System.out.println("Título: \u001b[107m\u001b[95m"+filmeListado.get("title")+"\u001b[m");
-      System.out.println("Nota: "+emojiStarRank.covertRanktoStars(emojiStarRank.rankRounder(filmeListado.get("imDbRating"))));
+      System.out.println("Nota: "+filmeListado.get("imDbRating"));
       var imageOutput = (filmeListado.get("image") != null)? filmeListado.get("image") : "";
       System.out.println(imageOutput);
-      System.out.println("-------------------");
+      System.out.println("___________________");
      }
     }
 
-    public void retornarUrlImagem(List<Map<String,String>> listaURL) throws Exception {
+    public void transformaUrlFigurinha(List<Map<String,String>> listaURL,int limite) throws Exception {
      StarRank emojiStarRank = new StarRank();
      StickerFormatter formatadora = new StickerFormatter();
-
+      int i = 0;
+      limite = (limite<250)? limite : 250;
      for (Map<String,String> urlListada : listaURL) {
+      if (i<limite){
         String notaFig = emojiStarRank.covertRanktoStars(emojiStarRank.rankRounder(urlListada.get("imDbRating")));
-        String tituloFig = (urlListada.get("title")+".png");
-        String urlImagem = urlListada.get("image");
-        System.out.println(tituloFig);
-        System.out.println(urlImagem);
-        InputStream inputStream = new URL(urlImagem).openStream();
+        String tituloFig = urlListada.get("title");
+        String urlImagem = UrlParser.removeAtributoURL(urlListada.get("image"));
+        InputStream inputStream = new URL(urlImagem).openConnection().getInputStream();
         formatadora.converterFig(inputStream, tituloFig,notaFig);
+        i++;
+      } else {break;} 
     }
 
     }
+   
 }
